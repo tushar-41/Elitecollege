@@ -21,28 +21,28 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-3">
               <a
-                href="#"
+                href="https://x.com/Tushar__46"
                 className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
                 aria-label="Twitter"
               >
                 <Twitter className="w-4 h-4 text-gray-600" />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/tushar46"
                 className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-4 h-4 text-gray-600" />
               </a>
               <a
-                href="#"
+                href="https://github.com/tushar-41/elitecollege"
                 className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
                 aria-label="Github"
               >
                 <Github className="w-4 h-4 text-gray-600" />
               </a>
               <a
-                href="mailto:contact@techsprint.com"
+                href="mailto:tusharshrma4126@gmail.com"
                 className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
                 aria-label="Email"
               >
@@ -75,7 +75,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="/leaderboard"
                   className="text-gray-600 hover:text-gray-900 transition-colors text-sm"
                 >
                   Rankings

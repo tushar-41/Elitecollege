@@ -94,12 +94,13 @@ const Navbar = () => {
           >
             Compare Colleges
           </Link>
-          <button
+          <a
+            href="/leaderboard"
             onClick={() => setMenuOpen(false)}
             className="px-6 py-3 bg-stone-900 text-white rounded-full shadow-lg hover:bg-stone-800 transition-colors mt-4"
           >
-            Get Started
-          </button>
+            LeaderBoard
+          </a>
         </div>
       )}
     </>
