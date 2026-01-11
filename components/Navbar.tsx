@@ -81,11 +81,11 @@ const Navbar = () => {
       {menuOpen && (
         <div className="fixed inset-0 z-40 bg-[#F9F8F4] flex flex-col items-center justify-center gap-6 text-lg font-serif animate-fade-in pt-20">
           <Link
-            href="/leaderboard"
+            href="#features"
             onClick={() => setMenuOpen(false)}
             className="nav-link hover:text-stone-900 transition-colors"
           >
-            Leaderboard
+            Features
           </Link>
           <Link
             href="/compare"
