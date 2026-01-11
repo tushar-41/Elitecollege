@@ -27,7 +27,7 @@ export const RankingMethodology = () => {
           </div>
           <div>
             <h4 className="font-semibold text-gray-900 mb-1">
-              Academics (25%)
+              Academics (30%)
             </h4>
             <p className="text-gray-600 text-sm">
               Curriculum quality, research output, and academic excellence
@@ -43,7 +43,7 @@ export const RankingMethodology = () => {
           </div>
           <div>
             <h4 className="font-semibold text-gray-900 mb-1">
-              Placements (25%)
+              Placements (40%)
             </h4>
             <p className="text-gray-600 text-sm">
               Job placement rates, average packages, and recruiter reputation
@@ -59,7 +59,7 @@ export const RankingMethodology = () => {
           </div>
           <div>
             <h4 className="font-semibold text-gray-900 mb-1">
-              Infrastructure (25%)
+              Infrastructure (20%)
             </h4>
             <p className="text-gray-600 text-sm">
               Campus facilities, labs, libraries, and technological resources
@@ -74,7 +74,7 @@ export const RankingMethodology = () => {
             </div>
           </div>
           <div>
-            <h4 className="font-semibold text-gray-900 mb-1">ROI (25%)</h4>
+            <h4 className="font-semibold text-gray-900 mb-1">ROI (10%)</h4>
             <p className="text-gray-600 text-sm">
               Return on investment and career growth potential
             </p>
