@@ -97,7 +97,7 @@ const App: React.FC = () => {
             )}`}
           >
             Comprehensive rankings based on placement records, return on
-            investment, student experience, and infrastructure quality.
+            investment, academics, and infrastructure quality.
           </p>
 
           <div className="flex justify-center">
