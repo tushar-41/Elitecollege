@@ -5,10 +5,9 @@ import {
   RankingCard,
   LeaderboardHeader,
   RankingMethodology,
-  LoadingState,
+  SkeletonLoader,
   ErrorState,
 } from "./_components";
-import type { College } from "./_components/types";
 
 // Main Leaderboard Page
 const LeaderboardPage = () => {
@@ -17,7 +16,7 @@ const LeaderboardPage = () => {
     useLeaderboardData(selectedYear);
 
   if (isLoading) {
-    return <LoadingState />;
+    return <SkeletonLoader />;
   }
 
   if (error) {

@@ -1,28 +1,161 @@
 "use client";
 import React, { use } from "react";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  Legend,
-  Tooltip,
-} from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { ArrowLeft, Award, BookOpen, Building2, Users } from "lucide-react";
 import Link from "next/link";
-import { LoadingState } from "@/app/leaderboard/_components";
+import CollegePageSkeleton from "../_components/SkeletonLoader";
 
-// Fetch college data from API
-const fetchCollegeById = async (id: string) => {
+// Fallback data for different years
+const FALLBACK_DATA: Record<string, any[]> = {
+  "2023": [
+    {
+      collegeId: 2,
+      collegeName: "MSIT",
+      metrics: {
+        academics: 66.20610687022901,
+        infrastructure: 34.360273578113755,
+        placements: 26.250025963205964,
+        roi: 94.63238993710692,
+      },
+      rank: 1,
+      score: 46.69713615568453,
+      yearLabel: "2023",
+    },
+    {
+      collegeId: 1,
+      collegeName: "BPIT",
+      metrics: {
+        academics: 65.5,
+        infrastructure: 29.28238805970149,
+        placements: 21.58370499564342,
+        roi: 95.15219665271967,
+      },
+      rank: 2,
+      score: 43.655179275469635,
+      yearLabel: "2023",
+    },
+    {
+      collegeId: 3,
+      collegeName: "MAIT",
+      metrics: {
+        academics: 52.08986784140969,
+        infrastructure: 40.70323167956304,
+        placements: 24.479533722329816,
+        roi: 92.26023047977424,
+      },
+      rank: 3,
+      score: 42.78544322524486,
+      yearLabel: "2023",
+    },
+  ],
+  "2024": [
+    {
+      collegeId: 2,
+      collegeName: "MSIT",
+      metrics: {
+        academics: 68.8162962962963,
+        infrastructure: 35.24293370944993,
+        placements: 22.18571224883452,
+        roi: 94.59754672897196,
+      },
+      rank: 1,
+      score: 46.02751520320988,
+      yearLabel: "2024",
+    },
+    {
+      collegeId: 3,
+      collegeName: "MAIT",
+      metrics: {
+        academics: 54.34495798319328,
+        infrastructure: 42.66839378238342,
+        placements: 21.568535199208775,
+        roi: 87.12927350427351,
+      },
+      rank: 2,
+      score: 42.17750758154553,
+      yearLabel: "2024",
+    },
+    {
+      collegeId: 1,
+      collegeName: "BPIT",
+      metrics: {
+        academics: 68.64528301886793,
+        infrastructure: 28.11914597815293,
+        placements: 19.24490014344036,
+        roi: 79.63690476190476,
+      },
+      rank: 3,
+      score: 41.879064634857585,
+      yearLabel: "2024",
+    },
+  ],
+  "2025": [
+    {
+      collegeId: 2,
+      collegeName: "MSIT",
+      metrics: {
+        academics: 69.94,
+        infrastructure: 37.7348397323001,
+        placements: 19.813137528773453,
+        roi: 81.62990762124711,
+      },
+      rank: 1,
+      score: 44.617213720094114,
+      yearLabel: "2025",
+    },
+    {
+      collegeId: 3,
+      collegeName: "MAIT",
+      metrics: {
+        academics: 56.86995708154507,
+        infrastructure: 43.71685111714345,
+        placements: 24.634433860406144,
+        roi: 87.13529191616767,
+      },
+      rank: 2,
+      score: 44.37166008367143,
+      yearLabel: "2025",
+    },
+    {
+      collegeId: 1,
+      collegeName: "BPIT",
+      metrics: {
+        academics: 63.90350877192982,
+        infrastructure: 31.203607893607895,
+        placements: 22.356326720809474,
+        roi: 99.77155172413792,
+      },
+      rank: 3,
+      score: 44.331460071038116,
+      yearLabel: "2025",
+    },
+  ],
+};
+
+// Fetch college data from API with timeout and fallback
+const fetchCollegeById = async (id: string, year: string = "2023") => {
   try {
-    const response = await fetch(
-      `https://myipurank.onrender.com/api/analytics/colleges/2023`
+    // Create a timeout promise that rejects after 5 seconds
+    const timeoutPromise = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("Request timeout")), 5000)
     );
-    const colleges = await response.json();
+
+    // Create the fetch promise
+    const fetchPromise = fetch(
+      `https://myipurank.onrender.com/api/analytics/colleges/${year}`
+    ).then((response) => response.json());
+
+    // Race between fetch and timeout
+    const colleges = await Promise.race([fetchPromise, timeoutPromise]);
     return colleges.find((college: any) => college.collegeId === parseInt(id));
   } catch (error) {
-    console.error("Error fetching college:", error);
-    return null;
+    console.error("Error fetching college, using fallback data:", error);
+
+    // Use fallback data if API fails or times out
+    const fallbackData = FALLBACK_DATA[year] || FALLBACK_DATA["2023"];
+    return fallbackData.find(
+      (college: any) => college.collegeId === parseInt(id)
+    );
   }
 };
 
@@ -72,7 +205,7 @@ const CollegePage = ({ params }: { params: Promise<{ id: string }> }) => {
   if (loading) {
     return (
       <div className="text-center">
-        <LoadingState />
+        <CollegePageSkeleton />
       </div>
     );
   }

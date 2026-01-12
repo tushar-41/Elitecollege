@@ -3,6 +3,6 @@ export { RankingCard } from "./RankingCard";
 export { StatsCard } from "./StatsCard";
 export { RankingMethodology } from "./RankingMethodology";
 export { LeaderboardHeader } from "./LeaderboardHeader";
-export { LoadingState } from "./LoadingState";
+export { default as SkeletonLoader } from "./SkeletonLoader";
 export { ErrorState } from "./ErrorState";
 export type { Metrics, College, RankedCollege } from "./types";
